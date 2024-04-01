@@ -37,11 +37,11 @@ class Server:
         start_page, end_page = index_range(page, page_size)
         dataset = self.dataset()[start_page: end_page]
         return dataset
-    
+
     def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict:
+        """Hypermedia pagination"""
         dataset_page = self.get_page(page, page_size)
         total_pages = math.ceil(len(self.dataset()) / page_size)
-        
         next_page = page + 1 if page < total_pages else None
         prev_page = page - 1 if page > 1 else None
 
