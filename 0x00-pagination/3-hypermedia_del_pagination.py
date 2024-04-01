@@ -2,10 +2,9 @@
 """
 Deletion-resilient hypermedia pagination
 """
-
 import csv
 import math
-from typing import List
+from typing import List, Dict
 
 
 class Server:
