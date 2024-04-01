@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
 """importing modules"""
 import csv
-import math
-from typing import List
+from typing import List, Tuple
 
 
-def index_range(page: int, page_size: int) -> tuple:
+def index_range(page: int, page_size: int) -> Tuple[int, int]:
     """index range function that calculates the page number"""
     start_index = (page - 1) * page_size
     end_index = start_index + page_size
@@ -17,9 +16,9 @@ class Server:
     """
     DATA_FILE = "Popular_Baby_Names.csv"
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.__dataset = None
-    
+
     def dataset(self) -> List[List]:
         """Cached dataset
         """
