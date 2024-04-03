@@ -18,9 +18,8 @@ class FIFOCache(BaseCaching):
             del self.cache_data[discarded_key]
             print(f"DISCARD: {discarded_key}")
         self.cache_data.update({key: item})
-        
+
     def get(self, key):
         """get data from the cache"""
-        if key is None:
-            return None
-        return self.cache_data[key]
+        if key is not None:
+            return self.cache_data[key]
