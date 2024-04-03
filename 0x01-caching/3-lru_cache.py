@@ -3,23 +3,30 @@
 BaseCaching = __import__('base_caching').BaseCaching
 
 
-class LIFOCache(BaseCaching):
+class LRUCache(BaseCaching):
     """Basic Caching class"""
     def __init__(self):
         """initailization function, get cache_data from the base class"""
+        self.used = []
         super().__init__()
 
     def put(self, key, item):
         """insert a dictionary data to the cache"""
-        if key is None or item is None:
-            return
-        if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
-            removed = list(self.cache_data.keys())[-1]
-            del self.cache_data[removed]
-            print("DISCARD: {}".format(removed))
-        self.cache_data.update({key: item})
+        if key is not None and item is not None:
+            if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
+                removed = self.used.pop(0)
+                del self.cache_data[removed]
+                print("DISCARD: {}".format(removed))
+            self.cache_data[key] = item
+            self.used.append(key)
+        else:
+            return None
 
     def get(self, key):
         """get data from the cache"""
-        if key is not None :
-            return self.cache_data[key]
+        if key is not None:
+            if key in self.cache_data:
+                self.used.remove(key)
+                self.used.append(key)
+                return self.cache_data[key]
+        return None
