@@ -13,9 +13,9 @@ class FIFOCache(BaseCaching):
         """insert a dictionary data to the cache"""
         if key is None or item is None:
             return
-        if len(self.cache_data) > BaseCaching.MAX_ITEMS:
-            discarded_key = next(iter(self.cache_data))
-            del self.cache_data[discarded_key]
+        if len(self.cache_data) + 1 > BaseCaching.MAX_ITEMS:
+            data = dict()
+            data.popitem()
             print(f"DISCARD: {discarded_key}")
         self.cache_data.update({key: item})
 
