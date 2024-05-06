@@ -19,4 +19,3 @@ client.hset('HolbertonSchools', 'Paris', '2', print);
 client.hgetall("HolbertonSchools", (err, data) => {
     console.log(data)
 })
-
