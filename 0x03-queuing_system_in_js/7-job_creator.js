@@ -60,34 +60,13 @@ jobs.forEach((data) => {
     })
     otherNotification.on('complete', () => {
         console.log(`Notification job ${otherNotification.id} completed`);
-      });
+    });
     
-      otherNotification.on('failed', (errorMessage) => {
+    otherNotification.on('failed', (errorMessage) => {
         console.log(`Notification job ${otherNotification.id} failed: ${errorMessage}`);
-      });
+    });
     
-      otherNotification.on('progress', (progress, data) => {
+    otherNotification.on('progress', (progress, data) => {
         console.log(`Notification job ${otherNotification.id} ${progress}% complete`);
     });
 })
-
-
-// for (const data of jobs) {
-//   const otherNotification = queue.create(
-//     'push_notification_code_2', data
-// ).save((err) => {
-//     if (!err) console.log();
-//   });
-
-//   otherNotification.on('complete', () => {
-//     console.log(`Notification job ${otherNotification.id} completed`);
-//   });
-
-//   otherNotification.on('failed', (errorMessage) => {
-//     console.log(`Notification job ${otherNotification.id} failed: ${errorMessage}`);
-//   });
-
-//   otherNotification.on('progress', (progress, data) => {
-//     console.log(`Notification job ${otherNotification.id} ${progress}% complete`);
-//   });
-// }
